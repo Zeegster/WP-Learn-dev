@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ulitka-kit/media-text-absolute",
+  "version": "0.1.0",
+  "title": "Текст на изображении",
+  "category": "ulitka-custom",
+  "icon": "slides",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "className": true
+  },
+  "attributes": {
+    "zIndex": {
+      "type": "integer"
+    },
+    "inner_block_position": {
+      "type": "string",
+      "enum": [
+        "center-center",
+        "center-right",
+        "center-left",
+        "top-center",
+        "top-right",
+        "top-left",
+        "bottom-center",
+        "bottom-right",
+        "bottom-left"
+      ],
+      "default": "center-center"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "image_id": {
+      "type": "number"
+    }
+  },
+  "textdomain": "example-dynamic",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

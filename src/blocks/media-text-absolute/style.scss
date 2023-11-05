@@ -1,0 +1,110 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.relative-block {
+	position: relative;
+	display: flex;
+	width: fit-content;
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+	@media (max-width: 400px) {
+		.has-h-base-font-size{
+			font-size: 1.25rem !important;
+		}
+	}
+}
+
+
+.is-position-center-left {
+
+	position: absolute;
+  z-index: 4;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.is-position-center-right {
+
+	position: absolute;
+  z-index: 4;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+.is-position-center-center {
+
+	position: absolute;
+  z-index: 4;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  left: 50%;
+}
+.is-position-top-right {
+
+	position: absolute;
+  z-index: 4;
+  top: 0;
+  transform: translateY(0);
+  right: 0;
+}
+.is-position-top-left {
+
+	position: absolute;
+  z-index: 4;
+  top: 0;
+  transform: translateY(0);
+  left: 0;
+}
+.is-position-top-center {
+
+	position: absolute;
+  z-index: 4;
+  top: 0;
+  transform: translate(-50%,0%);
+  left: 50%;
+}
+.is-position-bottom-right {
+
+	position: absolute;
+  z-index: 4;
+  bottom: 0;
+  transform: translateX(50%);
+  left: 50%;
+}
+.is-position-bottom-left {
+
+	position: absolute;
+  z-index: 4;
+  bottom: 0;
+  transform: translateX(0);
+  left: 0;
+}
+.is-position-bottom-center {
+
+	position: absolute;
+  z-index: 4;
+  bottom: 0;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+
+.async-wrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease;  
+}
+
+.async-wrapper.hx-swap-o {
+  opacity: 0; 
+}
+
+.async-wrapper.hx-swap {
+  opacity: 1;
+}

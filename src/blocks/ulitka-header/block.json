@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "ulitka-kit/ulitka-header",
+	"version": "0.1.0",
+	"title": "Контейнер для навигации",
+	"category": "ulitka-custom",
+	"icon": "menu",
+	"description": "Блок конетейнер для блока навигации с кнопкой и возможностями настройки цвета элементов",
+	"example": {},
+	"supports": {
+		"html": false
+	},"attributes": {
+    "containerColor": {
+        "type": "string",
+        "default": "#EFECD9B3"
+    },
+    "buttonColor": {
+        "type": "string",
+        "default": "#BDC9B6"
+    },
+    "burgerColor": {
+        "type": "string",
+        "default": "#27201E"
+    },
+    "buttonImage": {
+        "type": "string"
+    },
+    "buttonImageID": {
+        "type": "number"
+    },
+    "backgroundBlur": {
+        "type": "number",
+        "default": 0
+    }
+},
+	"textdomain": "ulitka-header",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

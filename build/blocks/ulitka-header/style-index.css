@@ -1,0 +1,166 @@
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/ulitka-header/style.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+body.no-scroll {
+  overflow: hidden;
+}
+
+.navigation-outer-wrapper {
+  position: fixed;
+  height: -moz-fit-content;
+  height: fit-content;
+  z-index: 9999;
+  width: 0%;
+  display: grid;
+  transition: all 1s;
+  right: 0%;
+}
+.navigation-outer-wrapper.open {
+  width: 100%;
+}
+.navigation-outer-wrapper.open .navigation-wrapper {
+  animation: border-animation-reverse 2s forwards;
+}
+.navigation-outer-wrapper.open .navigation-wrapper ul {
+  transform: translateX(0%);
+  transition: all 1.5s;
+}
+.navigation-outer-wrapper.open .navigation-wrapper li {
+  opacity: 1;
+  transition: all 1.5s;
+}
+@media (width <= 1023px) {
+  .navigation-outer-wrapper {
+    height: 100dvh;
+  }
+}
+
+.wp-block-ulitka-kit-ulitka-header.navigation-wrapper {
+  display: grid;
+  max-height: 80px;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  padding: 10px 30px;
+  transition: all 1s;
+  position: relative;
+}
+@media (width <= 1023px) {
+  .wp-block-ulitka-kit-ulitka-header.navigation-wrapper {
+    max-height: 100%;
+    height: 100%;
+  }
+  .wp-block-ulitka-kit-ulitka-header.navigation-wrapper .wp-block-navigation__container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+.wp-block-ulitka-kit-ulitka-header.navigation-wrapper ul {
+  transform: translateX(30%);
+  transition: all 0.5s;
+}
+.wp-block-ulitka-kit-ulitka-header.navigation-wrapper li {
+  opacity: 0;
+  transition: all 0.5s;
+}
+.wp-block-ulitka-kit-ulitka-header.navigation-wrapper.animated {
+  animation: border-animation 1s forwards;
+}
+
+.navigation-button-wrapper {
+  position: absolute;
+  transition: all 1.2s;
+  top: 25%;
+  transform: translate(200%, 0%);
+  right: 0;
+  align-self: center;
+  z-index: 10000;
+}
+@media (width <= 1023px) {
+  .navigation-button-wrapper {
+    position: absolute;
+    top: 0%;
+    transform: translate(-50%, 50%);
+    right: 0%;
+  }
+}
+.navigation-button-wrapper.on-scroll {
+  transform: translate(-100%, 0%);
+}
+.navigation-button-wrapper.under-nav-wrapper {
+  transform: translate(-100%, 0%);
+  top: 100%;
+}
+.navigation-button-wrapper.under-nav-wrapper .navigation-button {
+  border-radius: 0% 0% 100% 100%;
+}
+.navigation-button-wrapper .button-image {
+  position: absolute;
+  transform: translate(-40%, -93%);
+  max-width: 65px;
+  height: auto;
+  z-index: -10;
+  opacity: 1;
+  transition: all 0.6s;
+}
+.navigation-button-wrapper .button-image.hidden {
+  opacity: 0;
+}
+
+.navigation-button {
+  border-radius: 100%;
+  display: block;
+  position: relative;
+  padding: 8px;
+  border: 0;
+  z-index: 10;
+  margin: auto;
+  cursor: pointer;
+  transition: all 1.2s;
+}
+.navigation-button.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+.navigation-button.active .burger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.navigation-button.active .burger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+.navigation-button .burger-line {
+  display: block;
+  height: 2px;
+  width: 20px;
+  margin: 4px auto;
+  transition: all 0.3s;
+}
+
+@keyframes border-animation {
+  0% {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+  100% {
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+  }
+}
+@keyframes border-animation-reverse {
+  0% {
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+  }
+  100% {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

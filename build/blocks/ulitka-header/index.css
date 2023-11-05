@@ -1,0 +1,57 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/ulitka-header/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-ulitka-kit-ulitka-header {
+  border: 1px dotted #f00;
+}
+.wp-block-ulitka-kit-ulitka-header.navigation-wrapper {
+  left: 0;
+  right: 0;
+}
+
+.navigation-button-wrapper {
+  position: relative;
+  right: 0;
+  top: 0%;
+  transform: translate(0%, 0%);
+}
+.navigation-button-wrapper .button-image {
+  max-width: 65px;
+  height: auto;
+  transform: translate(0%, 0%);
+  opacity: 1;
+  transition: all 0.6s;
+}
+.navigation-button-wrapper .components-button.navigation-button {
+  border-radius: 100%;
+  display: block;
+  position: relative;
+  padding: 8px;
+  border: 0;
+  z-index: 10;
+  margin: auto;
+  cursor: pointer;
+}
+.navigation-button-wrapper .components-button.navigation-button.active .burger-line:nth-child(2) {
+  opacity: 0;
+}
+.navigation-button-wrapper .components-button.navigation-button.active .burger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.navigation-button-wrapper .components-button.navigation-button.active .burger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+.navigation-button-wrapper .components-button.navigation-button .burger-line {
+  display: block;
+  height: 2px;
+  width: 20px;
+  margin: 4px auto;
+  transition: all 0.3s;
+}
+
+/*# sourceMappingURL=index.css.map*/
