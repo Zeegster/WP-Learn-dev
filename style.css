@@ -1,0 +1,132 @@
+/*
+Theme Name: Ulitka Aroma
+Theme URI: 
+Author: ZeeRo
+Author URI: 
+Description: 
+Requires at least: 6.0
+Tested up to: 6.3
+Requires PHP: 5.7
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ulitkaaroma
+Tags: 
+*/
+
+.wp-block-group.is-style-height-2px {
+  height: 2px;
+  max-height: 2px;
+}
+
+.wp-block-group.is-style-height-20px {
+  height: 20px;
+  max-height: 20px;
+}
+.wp-block-buttons .wp-block-button.is-style-secondary-button {
+  transition: all .2s, color 0.1s;
+  border-top-color: var(--wp--preset--color--white);
+  border-right-color: var(--wp--preset--color--white);
+  border-bottom-color: var(--wp--preset--color--white);
+  border-left-color: var(--wp--preset--color--white);
+  color: var(--wp--preset--color--white);
+  .wp-block-button__link {
+    background-color: var(--wp--preset--color--ul-section-color);
+    border-top-color: var(--wp--preset--color--white);
+    border-right-color: var(--wp--preset--color--white);
+    border-bottom-color: var(--wp--preset--color--white);
+    border-left-color: var(--wp--preset--color--white);
+    color: var(--wp--preset--color--white);
+  }
+  .wp-block-button__link:hover {
+    color: var(--wp--preset--color--ul-section-color);
+    background-color: white;
+    border-color: var(--wp--preset--color--ul-section-color);
+  }
+  .wp-block-button__link:focus {
+    color: var(--wp--preset--color--ul-section-color);
+    background-color: var(--wp--preset--color--ul-secondary-d-1);
+    border-color: var(--wp--preset--color--ul-section-color);
+  }
+}
+
+.wp-block-buttons .wp-block-button.is-style-rounded-button {
+  .wp-block-button__link {
+    border: 2px solid transparent;
+    position: relative;
+    color: black;
+    background-color: transparent;
+    padding: 0.5rem 0.25rem 0.25rem 0.25rem;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    transition: color 0.1s;
+    transition-property: box-shadow;
+    transition-duration: 0.1s;
+  }
+  .wp-block-button__link::before {
+    transition: all 0.2s;
+    position: absolute;
+    content: "";
+    z-index: -1;
+    display: inline-block;
+    border-radius: 100%;
+    left: -10px;
+    right: 100%;
+    bottom: 0;
+    top: -20%;
+    height: 30px;
+    width: 30px;
+    border: 0 solid transparent;
+    background-color: var(--wp--preset--color--ul-primary);
+    vertical-align: middle;
+  }
+  .wp-block-button__link:hover {
+    color: var(--wp--preset--color--ul-primary);
+
+    box-shadow: 4px 4px 0px 0px var(--wp--preset--color--ul-primary-l-2);
+    transition-property: box-shadow;
+    transition-duration: 0.2s;
+    transition-delay: 0.2s;
+  }
+  .wp-block-button__link:hover::before {
+    left: 0px;
+    top: 0%;
+    right: 0%;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.125rem;
+    background-color: white;
+    border: 2px solid var(--wp--preset--color--ul-primary);
+  }
+  .wp-block-button__link:active,
+  .wp-block-button__link:focus {
+    transition: 0.1s all;
+    box-shadow: 0px 0px 0 0 transparent;
+  }
+  .wp-block-button__link:active::before,
+  .wp-block-button__link:focus::before {
+    transition: all 0.1s;
+    background-color: var(--wp--preset--color--ul-primary-l-2);
+  }
+}
+@media (max-width: 781px) {
+  .wp-block-columns.is-style-column-reverse-mobile {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 1023px) {
+
+  .wp-block-navigation-item:has(div.is-style-hide-on-mobile.wp-block-site-logo){
+    display: none !important;
+  }
+  .wp-block-navigation-item.is-style-hide-on-mobile.wp-block-navigation-link,
+  .is-style-hide-on-mobile.wp-block-site-logo {
+    display: none !important;
+  }
+  li:has(div.is-style-hide-on-mobile.wp-block-site-logo) {
+    display: none !important;
+  }
+  
+}
+
