@@ -1,1 +1,0 @@
-{"version":3,"file":"js/editor/responsiveControl/responsiveControl.js","mappings":";;;;;AAAAA,OAAO,CAACC,GAAG,CAAC,8BAA8B,CAAC,C","sources":["webpack://ulitka-kit/./src/js/editor/responsiveControl.js"],"sourcesContent":["console.log(\"ResponsivnesControl is here!\");\n\n\n"],"names":["console","log"],"sourceRoot":""}
