@@ -27,15 +27,15 @@ defined('ABSPATH') || exit;
 
 function custom_block_category($categories, $post)
 {
-	return array_merge(
-		array(
-			array(
-				'slug' => 'ulitka-custom',
-				'title' => 'Ulitka Custom Blocks',
-			),
-		),
-		$categories
-	);
+    return array_merge(
+        array(
+            array(
+                'slug' => 'ulitka-custom',
+                'title' => 'Ulitka Custom Blocks',
+            ),
+        ),
+        $categories
+    );
 }
 
 
@@ -44,80 +44,111 @@ add_filter('block_categories_all', 'custom_block_category', 10, 2);
 
 function ulitka_kit_block_init()
 {
-	$build_dir = __DIR__ . '/build/blocks/';
+    $build_dir = __DIR__ . '/build/blocks/';
 
-	// Сканируем директорию build на наличие директорий блоков
-	$dirs = glob($build_dir . '*', GLOB_ONLYDIR);
+    // Сканируем директорию build на наличие директорий блоков
+    $dirs = glob($build_dir . '*', GLOB_ONLYDIR);
 
-	foreach ($dirs as $dir) {
-		// Регистрируем каждый блок
-		register_block_type($dir);
-	}
+    foreach ($dirs as $dir) {
+        // Регистрируем каждый блок
+        register_block_type($dir);
+    }
 }
 add_action('init', 'ulitka_kit_block_init');
 
-function enqueue_editor_scripts()
+function get_script_asset($file)
 {
 
+    $asset_file = $file;
 
-	$build_dir = plugin_dir_path(__FILE__) . 'build/';
-	$build_url = plugin_dir_url(__FILE__) . 'build/';
-	// Scan the build directory and its subdirectories for JavaScript and CSS files
-	$js_files = glob($build_dir . 'js/{,*/,*/*/,*/*/*/}*.js', GLOB_BRACE);
+    if (strpos($file, '.js') !== false) {
+        $asset_file = str_replace('.js', '.asset.php', $file);
+    }
 
+    if (file_exists($asset_file)) {
+        return include $asset_file;
+    }
 
-	foreach ($js_files as $file) {
-		$filename = basename($file, '.js');
-		$relative_path = str_replace($build_dir, '', $file);
-		$relative_dir = dirname($relative_path);
-		$asset_file = $build_dir . $relative_dir . '/' . $filename . '.asset.php';
-
-		if (file_exists($asset_file)) {
-			$script_asset = include $asset_file;
-
-			wp_enqueue_script(
-				'ulitka_kit-' . $filename,
-				$build_url . $relative_path,
-				$script_asset['dependencies'],
-				$script_asset['version']
-			);
-		}
-	}
+    return [
+        'dependencies' => [],
+        'version' => ''
+    ];
 }
 
-add_action('enqueue_block_editor_assets', 'enqueue_editor_scripts');
+
+function enqueue_scripts()
+{
+
+    $build_dir = plugin_dir_path(__FILE__) . 'build/';
+    $build_url = plugin_dir_url(__FILE__) . 'build/';
+
+    $js_files = glob($build_dir . 'js/{,*/,*/*/,*/*/*/}*.js', GLOB_BRACE);
+
+    foreach ($js_files as $file) {
+
+        $filename = basename($file, '.js');
+        $relative_path = str_replace($build_dir, '', $file);
+
+        $script_asset = get_script_asset($file);
+        $dependencies = $script_asset['dependencies'];
+        $version = $script_asset['version'];
+
+        if (strpos($relative_path, 'editor') !== false) {
+            add_action('enqueue_block_editor_assets', function () use ($filename, $build_url, $relative_path, $dependencies, $version) {
+                wp_enqueue_script('ulitka_kit-' . $filename, $build_url . $relative_path, $dependencies, $version);
+            });
+        } else if (strpos($relative_path, 'frontend') !== false) {
+            add_action('wp_enqueue_scripts', function () use ($filename, $build_url, $relative_path, $dependencies, $version) {
+                wp_enqueue_script('ulitka_kit-' . $filename, $build_url . $relative_path, $dependencies, $version);
+            });
+        } else if (strpos($relative_path, 'admin') !== false) {
+            add_action('admin_enqueue_scripts', function () use ($filename, $build_url, $relative_path, $dependencies, $version) {
+                wp_enqueue_script('ulitka_kit-' . $filename, $build_url . $relative_path, $dependencies, $version);
+            });
+        } else {
+            add_action('wp_enqueue_scripts', function () use ($filename, $build_url, $relative_path, $dependencies, $version) {
+                wp_enqueue_script('ulitka_kit-' . $filename, $build_url . $relative_path, $dependencies, $version);
+            });
+            add_action('admin_enqueue_scripts', function () use ($filename, $build_url, $relative_path, $dependencies, $version) {
+                wp_enqueue_script('ulitka_kit-' . $filename, $build_url . $relative_path, $dependencies, $version);
+            });
+        }
+    }
+}
+
+enqueue_scripts();
 
 function enqueue_plugin_styles()
 {
 
 
-	$build_dir = plugin_dir_path(__FILE__) . 'build/';
-	$build_url = plugin_dir_url(__FILE__) . 'build/';
+    $build_dir = plugin_dir_path(__FILE__) . 'build/';
+    $build_url = plugin_dir_url(__FILE__) . 'build/';
 
-$css_files = glob($build_dir . 'css/{,*/,*/*/,*/*/*/}*.css', GLOB_BRACE);
+    $css_files = glob($build_dir . 'css/{,*/,*/*/,*/*/*/}*.css', GLOB_BRACE);
 
-	foreach ($css_files as $file) {
-		$filename = basename($file, '.css');
-		$relative_path = str_replace($build_dir, '', $file);
-		$relative_dir = dirname($relative_path);
-		$asset_file = $build_dir . $relative_dir . '/' . $filename . '.asset.php';
+    foreach ($css_files as $file) {
+        $filename = basename($file, '.css');
+        $relative_path = str_replace($build_dir, '', $file);
+        $relative_dir = dirname($relative_path);
+        $asset_file = $build_dir . $relative_dir . '/' . $filename . '.asset.php';
 
-		if (file_exists($asset_file)) {
-			$style_asset = include $asset_file;
+        if (file_exists($asset_file)) {
+            $style_asset = include $asset_file;
 
-			wp_enqueue_style(
-				'ulitka_kit-' . $filename,
-				$build_url . $relative_path,
-				isset($style_asset['dependencies']) ? $style_asset['dependencies'] : array(),
-				isset($style_asset['version']) ? $style_asset['version'] : false
-			);
-		} else {
-			wp_enqueue_style(
-				'ulitka_kit-' . $filename,
-				$build_url . $relative_path
-			);
-		}
-	}
+            wp_enqueue_style(
+                'ulitka_kit-' . $filename,
+                $build_url . $relative_path,
+                isset($style_asset['dependencies']) ? $style_asset['dependencies'] : array(),
+                isset($style_asset['version']) ? $style_asset['version'] : false
+            );
+        } else {
+            wp_enqueue_style(
+                'ulitka_kit-' . $filename,
+                $build_url . $relative_path
+            );
+        }
+    }
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_plugin_styles');
