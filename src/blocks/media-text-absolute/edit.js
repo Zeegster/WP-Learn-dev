@@ -18,7 +18,7 @@ import {
 	InnerBlocks,
 } from "@wordpress/block-editor";
 
-import { PanelBody, PanelRow , SelectControl } from "@wordpress/components";
+import { PanelBody, PanelRow, SelectControl } from "@wordpress/components";
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -51,6 +51,15 @@ const MY_TEMPLATE = [
 ];
 
 export default function Edit({ attributes, setAttributes }) {
+	const { innerBlockPosition, imageURL, imageID, imageWidth, imageHeight } =
+		attributes;
+
+	const onSelectImage = (image) => {
+		setAttributes({ imageID: image.id, imageURL: image.url });
+	};
+	const onChagePosition = (value) => {
+		setAttributes({ innerBlockPosition: value });
+	};
 	return (
 		<>
 			{/* Inspector Zone */}
@@ -59,8 +68,8 @@ export default function Edit({ attributes, setAttributes }) {
 					<SelectControl
 						label="Внутреннее позиционирование"
 						desc="Как позиционировать внутреннее содержимое блока? 'ось X' 'ось Y'"
-						onChange={(val) => setAttributes({ inner_block_position: val })}
-						value={attributes.inner_block_position}
+						onChange={onChagePosition }
+						value={innerBlockPosition}
 						options={[
 							{
 								label: "Центр Центр",
@@ -109,30 +118,26 @@ export default function Edit({ attributes, setAttributes }) {
 					className: "relative-block",
 				})}
 			>
-				{attributes.image_url && attributes.image_id ? (
+				{imageURL && imageID ? (
 					<>
-						<img src={attributes.image_url} className="image-box" />
+						<img src={imageURL} className="image-box" />
 						<button
 							className="button-remove"
-							onClick={() => setAttributes({ image_url: "", image_id: null })}
+							onClick={() => setAttributes({ imageURL: "", imageID: null })}
 						>
 							Remove
 						</button>
 					</>
 				) : (
 					<MediaPlaceholder
-						onSelect={(image) => {
-							setAttributes({ image_url: image.url, image_id: image.id });
-						}}
+						onSelect={ onSelectImage }
 						allowedTypes={["image"]}
 						multiple={false}
 						className={"image-box"}
 						labels={{ title: "CTA Image" }}
 					></MediaPlaceholder>
 				)}
-				<div {...useBlockProps({
-					className: `is-position-${attributes.inner_block_position}`,
-				})}>
+				<div className={`is-position-${innerBlockPosition}`}>
 					<InnerBlocks />
 				</div>
 			</div>

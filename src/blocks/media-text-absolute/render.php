@@ -5,8 +5,8 @@
  */
 
 
-$image_id = $attributes["image_id"];
-$inner_block_position = $attributes["inner_block_position"];
+$image_id = $attributes["imageID"];
+$inner_block_position = $attributes["innerBlockPosition"];
 
 ?>
 <div <?php echo get_block_wrapper_attributes(["class" => 'relative-block image-wrapper']); ?>>

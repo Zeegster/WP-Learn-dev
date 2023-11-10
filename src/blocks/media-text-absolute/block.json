@@ -13,10 +13,10 @@
 		"className": true
 	},
 	"attributes": {
-		"zIndex":{
-			"type":"integer"
+		"zIndex": {
+			"type": "integer"
 		},
-		"inner_block_position": {
+		"innerBlockPosition": {
 			"type": "string",
 			"enum": [
 				"center-center",
@@ -31,11 +31,19 @@
 			],
 			"default": "center-center"
 		},
-		"image_url": {
+		"imageURL": {
 			"type": "string"
 		},
-		"image_id": {
+		"imageID": {
 			"type": "number"
+		},
+		"imageWidth": {
+			"type": "number",
+			"default": " "
+		},
+		"imageHeight": {
+			"type": "number",
+			"default": " "
 		}
 	},
 	"textdomain": "example-dynamic",

@@ -13,16 +13,12 @@
 	position: relative;
 	display: block;
 
-.is-absolute-center{
-	position: relative;
-	margin: auto;
-	width: 100%;
-}
 .button-remove {
 	z-index: 2;
 	position: absolute;
 	top: 20px;
-	left: 20px;
+	left: auto;
+	right: 0%;
 	background: white;
 	color: #b93535;
 	border: 2px solid #b93535;

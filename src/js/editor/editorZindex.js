@@ -4,8 +4,6 @@ import { createHigherOrderComponent } from "@wordpress/compose";
 import { InspectorControls } from "@wordpress/blockEditor";
 import { PanelBody, RangeControl, ToggleControl } from "@wordpress/components";
 
-
-
 // 1. Add a z-index attribute and a toggle to all blocks.
 addFilter(
 	"blocks.registerBlockType",
@@ -85,25 +83,13 @@ const addZindexStyle = createHigherOrderComponent((BlockListBlock) => {
 		let wrapperProps = props.wrapperProps ? props.wrapperProps : {};
 
 		if (toggleZIndex && zIndex) {
-			const blockElement = document.querySelector(
-				`[data-block="${props.clientId}"]`,
-			);
-			if (blockElement) {
-				const positionValue = window
-					.getComputedStyle(blockElement)
-					.getPropertyValue("position");
-				const position =
-					positionValue === "static" ? "relative" : positionValue;
-
-				wrapperProps = {
-					...wrapperProps,
-					style: {
-						...wrapperProps.style,
-						zIndex: zIndex,
-						position: position,
-					},
-				};
-			}
+			wrapperProps = {
+				...wrapperProps,
+				style: {
+					...wrapperProps.style,
+					zIndex: zIndex,
+				},
+			};
 		}
 
 		return <BlockListBlock {...props} wrapperProps={wrapperProps} />;
@@ -122,12 +108,21 @@ addFilter(
 	"ulitka-kit/add-z-index-extra-props",
 	(extraProps, blockType, attributes) => {
 		if (attributes.toggleZIndex && attributes.zIndex) {
+			let position = "relative";
+			if (
+				extraProps.style &&
+				extraProps.style.position &&
+				extraProps.style.position !== "static"
+			) {
+				position = extraProps.style.position;
+			}
 			extraProps.style = {
 				...(extraProps.style || {}),
 				zIndex: attributes.zIndex,
+				position: position,
 			};
 		}
 		return extraProps;
 	},
 );
-console.log('editorZindex.js is running');
+console.log("editorZindex.js is running");
