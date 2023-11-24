@@ -153,3 +153,11 @@ function enqueue_plugin_styles()
 
 add_action('wp_enqueue_scripts', 'enqueue_plugin_styles');
 add_action('enqueue_block_editor_assets', 'enqueue_plugin_styles');
+
+
+add_action('init', 'ulitka_kit_register_block_styles');
+function ulitka_kit_register_block_styles()
+{
+	new_block_style('core/post-template', 'card', 'Карточка с анимацией');
+	new_block_style('core/post-excerpt', 'styled-link', 'Доп. стили ссылки');
+}

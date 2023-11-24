@@ -1,6 +1,6 @@
 // Import original config from the @wordpress/scripts package.
 const defaultConfig = require("@wordpress/scripts/config/webpack.config");
-// Import helper to find and generate the ebtry points in the src directory.
+// Import helper to find and generate the entry points in the src directory.
 const { getWebpackEntryPoints } = require("@wordpress/scripts/utils/config");
 
 // Plugins.
@@ -11,7 +11,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Функция для получения точек входа из каталога
-function getAdditionalEntryPoints(srcDir, buildDir) {
+function getAdditionalEntryPoints(srcDir, buildDir, fileExtension) {
   const entryPoints = {};
 
   function processDir(currentDir) {
@@ -24,11 +24,9 @@ function getAdditionalEntryPoints(srcDir, buildDir) {
       if (fileStat.isDirectory()) {
         processDir(filePath);
       } else {
-        const fileExtension = path.extname(file);
-        const fileNameWithoutExtension = path.basename(file, fileExtension);
-
-        if (fileExtension === '.js' || fileExtension === '.scss') {
-          const outputPath = path.join(buildDir, path.relative(srcDir, currentDir), fileNameWithoutExtension + '/'+fileNameWithoutExtension);
+        if (path.extname(file) === fileExtension) {
+          const fileNameWithoutExtension = path.basename(file, fileExtension);
+          const outputPath = path.join(buildDir, path.relative(srcDir, currentDir), fileNameWithoutExtension + '/' + fileNameWithoutExtension);
           const entryKey = outputPath.replace(/\\/g, '/');
           entryPoints[entryKey] = filePath;
         }
@@ -42,25 +40,17 @@ function getAdditionalEntryPoints(srcDir, buildDir) {
 }
 
 // Получаем дополнительные точки входа для JS и SCSS файлов
-const jsEntryPoints = getAdditionalEntryPoints(path.resolve(process.cwd(), 'src/js'), 'js');
-const scssEntryPoints = getAdditionalEntryPoints(path.resolve(process.cwd(), 'src/scss'), 'css');
+const jsEntryPoints = getAdditionalEntryPoints(path.resolve(process.cwd(), 'src/js'), 'js', '.js');
+const scssEntryPoints = getAdditionalEntryPoints(path.resolve(process.cwd(), 'src/scss'), 'css', '.scss');
 
-module.exports = {
-  ...defaultConfig,
-  ...{
-    entry: {
-      ...getWebpackEntryPoints(),
-      ...jsEntryPoints,
-      ...scssEntryPoints,
-    },
-
-		plugins: [
-			...defaultConfig.plugins,
-			// Удаляем пустые скрипты, которые могут быть созданы в результате объединения точек входа
-			// Remove empty scripts that may be created as a result of merging entry points
-			new RemoveEmptyScriptsPlugin({
-				stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-			}),
-		],
-	},
-};
+module.exports = Object.assign({}, defaultConfig, {
+  entry: Object.assign({}, getWebpackEntryPoints(), jsEntryPoints, scssEntryPoints),
+  plugins: [
+    ...defaultConfig.plugins,
+    // Удаляем пустые скрипты, которые могут быть созданы в результате объединения точек входа
+    // Remove empty scripts that may be created as a result of merging entry points
+    new RemoveEmptyScriptsPlugin({
+      stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
+    }),
+  ],
+});
