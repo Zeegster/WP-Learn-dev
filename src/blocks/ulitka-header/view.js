@@ -21,29 +21,31 @@
  */
 
 /* eslint-disable no-console */
-import domReady from "@wordpress/dom-ready";
+import domReady from '@wordpress/dom-ready';
 
 /* eslint-disable no-console */
 
-domReady(() => {
+domReady( () => {
 	// Получаем элементы / Get elements
-	const outerWrapper = document.querySelector(".navigation-outer-wrapper");
-	const toggleWrapper = document.querySelector(".navigation-button-wrapper");
-	const navToggle = document.querySelector(".navigation-button");
-	const buttonImage = document.querySelector(".button-image");
-	const navWrapper = document.querySelector(".navigation-wrapper");
+	const outerWrapper = document.querySelector( '.navigation-outer-wrapper' );
+	const toggleWrapper = document.querySelector(
+		'.navigation-button-wrapper'
+	);
+	const navToggle = document.querySelector( '.navigation-button' );
+	const buttonImage = document.querySelector( '.button-image' );
+	const navWrapper = document.querySelector( '.navigation-wrapper' );
 
 	// Получаем исходные стили кнопки / Get original button styles
 	const {
 		backgroundColor: originalButtonColor,
 		backdropFilter: originalBackdropFilter,
-	} = getComputedStyle(navToggle);
+	} = getComputedStyle( navToggle );
 
 	// Получаем исходные стили обертки / Get original wrapper styles
 	const {
 		backgroundColor: wrapperBgColor,
 		backdropFilter: wrapperBackdropFilter,
-	} = getComputedStyle(navWrapper);
+	} = getComputedStyle( navWrapper );
 
 	// Флаг для отслеживания текущего стиля / Flag to track the current style
 	let isOriginalStyle = true;
@@ -54,19 +56,19 @@ domReady(() => {
 	// Функция для проверки состояния кнопки при прокрутке / Function to check the button state on scroll
 	function checkButtonOnScroll() {
 		if (
-			navToggle.classList.contains("active") &&
-			buttonImage.classList.contains("hidden") &&
-			toggleWrapper.classList.contains("under-nav-wrapper")
+			navToggle.classList.contains( 'active' ) &&
+			buttonImage.classList.contains( 'hidden' ) &&
+			toggleWrapper.classList.contains( 'under-nav-wrapper' )
 		) {
-			navToggle.classList.remove("active");
-			buttonImage.classList.remove("hidden");
-			toggleWrapper.classList.remove("under-nav-wrapper");
+			navToggle.classList.remove( 'active' );
+			buttonImage.classList.remove( 'hidden' );
+			toggleWrapper.classList.remove( 'under-nav-wrapper' );
 
-			if (!isOriginalStyle && window.innerWidth >= 1024) {
-				Object.assign(navToggle.style, {
+			if ( ! isOriginalStyle && window.innerWidth >= 1024 ) {
+				Object.assign( navToggle.style, {
 					backgroundColor: originalButtonColor,
 					backdropFilter: originalBackdropFilter,
-				});
+				} );
 				isOriginalStyle = true;
 			}
 		}
@@ -74,48 +76,50 @@ domReady(() => {
 
 	// Функция для сброса навигации до ее исходного состояния / Function to reset the navigation to its default state
 	function resetNavigation() {
-		navToggle.classList.remove("active");
-		buttonImage.classList.remove("hidden");
-		toggleWrapper.classList.remove("under-nav-wrapper");
-		toggleWrapper.classList.remove("on-scroll");
-		document.body.classList.remove("no-scroll");
+		navToggle.classList.remove( 'active' );
+		buttonImage.classList.remove( 'hidden' );
+		toggleWrapper.classList.remove( 'under-nav-wrapper' );
+		toggleWrapper.classList.remove( 'on-scroll' );
+		document.body.classList.remove( 'no-scroll' );
 
-		Object.assign(navToggle.style, {
+		Object.assign( navToggle.style, {
 			backgroundColor: originalButtonColor,
 			backdropFilter: originalBackdropFilter,
-		});
+		} );
 		isOriginalStyle = true;
 	}
 
 	// Обработчик клика по кнопке / Click handler for the button
 	function handleClick() {
 		// Переключаем классы / Toggle classes
-		navToggle.classList.toggle("active");
-		outerWrapper.classList.toggle("open");
-		outerWrapper.classList.contains("open")
-			? navWrapper.classList.remove("animated")
-			: navWrapper.classList.add("animated");
+		navToggle.classList.toggle( 'active' );
+		outerWrapper.classList.toggle( 'open' );
+		outerWrapper.classList.contains( 'open' )
+			? navWrapper.classList.remove( 'animated' )
+			: navWrapper.classList.add( 'animated' );
 
-		if (window.innerWidth <= 1023) {
-			document.body.classList.toggle("no-scroll");
+		if ( window.innerWidth <= 1023 ) {
+			document.body.classList.toggle( 'no-scroll' );
 		}
 
-		if (window.innerWidth >= 1024) {
-			toggleWrapper.classList.toggle("under-nav-wrapper");
-			buttonImage.classList.toggle("hidden");
+		if ( window.innerWidth >= 1024 ) {
+			toggleWrapper.classList.toggle( 'under-nav-wrapper' );
+			buttonImage.classList.toggle( 'hidden' );
 
 			// Переключаем класс "animated" в зависимости от состояния navWrapper / Toggle "animated" class depending on the state of navWrapper
 
 			// Меняем текущий стиль кнопки на стили обертки, если исходный стиль не менялся / Change the current button style to wrapper styles if the original style has not changed
-			Object.assign(navToggle.style, {
-				backgroundColor: isOriginalStyle ? wrapperBgColor : originalButtonColor,
+			Object.assign( navToggle.style, {
+				backgroundColor: isOriginalStyle
+					? wrapperBgColor
+					: originalButtonColor,
 				backdropFilter: isOriginalStyle
 					? wrapperBackdropFilter
 					: originalBackdropFilter,
-			});
+			} );
 
 			// Переключаем флаг / Toggle the flag
-			isOriginalStyle = !isOriginalStyle;
+			isOriginalStyle = ! isOriginalStyle;
 		}
 	}
 
@@ -126,69 +130,69 @@ domReady(() => {
 		let isScrollingUp = lastScroll > scroll;
 
 		// Если прокрутка изменилась более чем на 200 пикселей / If the scroll has changed by more than 200 pixels
-		if (Math.abs(lastScroll - scroll) >= 200) {
+		if ( Math.abs( lastScroll - scroll ) >= 200 ) {
 			// Если прокрутка больше или равна 100 / If the scroll is greater than or equal to 100
-			if (scroll >= 100) {
-				outerWrapper.classList.remove("open");
-				navWrapper.classList.add("animated");
-				toggleWrapper.classList.add("on-scroll");
+			if ( scroll >= 100 ) {
+				outerWrapper.classList.remove( 'open' );
+				navWrapper.classList.add( 'animated' );
+				toggleWrapper.classList.add( 'on-scroll' );
 				checkButtonOnScroll();
-			} else if (scroll <= 100) {
+			} else if ( scroll <= 100 ) {
 				// Если прокрутка меньше или равна 100 / If the scroll is less than or equal to 100
-				outerWrapper.classList.add("open");
+				outerWrapper.classList.add( 'open' );
 				// Добавляем класс 'animated' только при прокрутке вверх / Add 'animated' class only when scrolling up
-				if (isScrollingUp) {
-					navWrapper.classList.remove("animated");
+				if ( isScrollingUp ) {
+					navWrapper.classList.remove( 'animated' );
 				}
-				toggleWrapper.classList.remove("on-scroll");
+				toggleWrapper.classList.remove( 'on-scroll' );
 				checkButtonOnScroll();
 			}
 			lastScroll = scroll;
 		}
 		// Если прокрутка меньше или равна 10 / If the scroll is less than or equal to 10
-		if (scroll <= 10) {
-			outerWrapper.classList.add("open");
+		if ( scroll <= 10 ) {
+			outerWrapper.classList.add( 'open' );
 			// Добавляем класс 'animated' только при прокрутке вверх / Add 'animated' class only when scrolling up
-			if (isScrollingUp) {
-				navWrapper.classList.remove("animated");
+			if ( isScrollingUp ) {
+				navWrapper.classList.remove( 'animated' );
 			}
-			toggleWrapper.classList.remove("on-scroll");
+			toggleWrapper.classList.remove( 'on-scroll' );
 			checkButtonOnScroll();
 		}
 	}
 	function handleViewChange() {
-		const mobileView = window.matchMedia("(max-width: 1023px)");
-		const desktopView = window.matchMedia("(min-width: 1024px)");
+		const mobileView = window.matchMedia( '(max-width: 1023px)' );
+		const desktopView = window.matchMedia( '(min-width: 1024px)' );
 
 		function handleResize() {
-			if (mobileView.matches) {
+			if ( mobileView.matches ) {
 				// Добавляем обработчики событий для мобильного вида
-				navToggle.addEventListener("touchstart", handleClick, {
+				navToggle.addEventListener( 'touchstart', handleClick, {
 					passive: true,
-				});
+				} );
 				// Удаляем обработчики событий для десктопного вида
-				navToggle.removeEventListener("click", handleClick);
-				window.removeEventListener("scroll", handleScroll);
-				outerWrapper.classList.remove("open");
-			} else if (desktopView.matches) {
+				navToggle.removeEventListener( 'click', handleClick );
+				window.removeEventListener( 'scroll', handleScroll );
+				outerWrapper.classList.remove( 'open' );
+			} else if ( desktopView.matches ) {
 				// Добавляем обработчики событий для десктопного вида
 
-				outerWrapper.classList.add("open");
-				navToggle.addEventListener("click", handleClick);
-				window.addEventListener("scroll", handleScroll);
+				outerWrapper.classList.add( 'open' );
+				navToggle.addEventListener( 'click', handleClick );
+				window.addEventListener( 'scroll', handleScroll );
 				// Удаляем обработчики событий для мобильного вида
-				navToggle.removeEventListener("touchstart", handleClick, {
+				navToggle.removeEventListener( 'touchstart', handleClick, {
 					passive: true,
-				});
+				} );
 			}
 			resetNavigation(); // Сброс навигации при изменении размера окна
 		}
 
 		// Проверка при загрузке страницы и при изменении размера окна
 		handleResize();
-		window.addEventListener("resize", handleResize);
+		window.addEventListener( 'resize', handleResize );
 	}
 
 	handleViewChange();
-});
+} );
 /* eslint-enable no-console */

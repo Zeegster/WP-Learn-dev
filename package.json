@@ -17,15 +17,13 @@
 		"add-static": "npx @wordpress/create-block --namespace ulitka-kit --no-plugin"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.16.0",
+		"@wordpress/scripts": "^26.17.0",
 		"path": "^0.12.7",
 		"webpack-remove-empty-scripts": "^1.0.4"
 	},
 	"dependencies": {
 		"@10up/block-components": "^1.17.3",
-		"@wordpress/element": "^5.22.0",
-		"@wordpress/icons": "^9.36.0",
-		"sudo": "^1.0.3",
-		"swiper": "^11.0.4"
+		"@wordpress/element": "^5.23.0",
+		"@wordpress/icons": "^9.37.0"
 	}
 }

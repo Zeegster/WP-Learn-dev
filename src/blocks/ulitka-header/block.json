@@ -10,30 +10,31 @@
 	"example": {},
 	"supports": {
 		"html": false
-	},"attributes": {
-    "containerColor": {
-        "type": "string",
-        "default": "#EFECD9B3"
-    },
-    "buttonColor": {
-        "type": "string",
-        "default": "#BDC9B6"
-    },
-    "burgerColor": {
-        "type": "string",
-        "default": "#27201E"
-    },
-    "buttonImage": {
-        "type": "string"
-    },
-    "buttonImageID": {
-        "type": "number"
-    },
-    "backgroundBlur": {
-        "type": "number",
-        "default": 0
-    }
-},
+	},
+	"attributes": {
+		"containerColor": {
+			"type": "string",
+			"default": "#EFECD9B3"
+		},
+		"buttonColor": {
+			"type": "string",
+			"default": "#BDC9B6"
+		},
+		"burgerColor": {
+			"type": "string",
+			"default": "#27201E"
+		},
+		"buttonImage": {
+			"type": "string"
+		},
+		"buttonImageID": {
+			"type": "number"
+		},
+		"backgroundBlur": {
+			"type": "number",
+			"default": 0
+		}
+	},
 	"textdomain": "ulitka-header",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

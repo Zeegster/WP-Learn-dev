@@ -31,6 +31,7 @@ registerBlockType( metadata.name, {
 	 * @see ./edit.js
 	 */
 	edit: Edit,
-	save: props => {
-		return <InnerBlocks.Content />}
+	save: ( props ) => {
+		return <InnerBlocks.Content />;
+	},
 } );
