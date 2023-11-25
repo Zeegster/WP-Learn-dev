@@ -1,0 +1,37 @@
+.wp-element-button{
+	transition: color 0.4s, background-color 0.4s, border-color 0.4s;
+
+}
+
+a{
+	color: inherit;
+}
+
+a.wp-block-navigation-item__content{
+
+	transition: all 0.3s;
+	position: relative;
+	&::before {
+		z-index: -1;
+		content: "";
+		position: absolute;
+		bottom: 0;
+		width: 0%;
+		height: 5%;
+		background-color: rgba(0, 0, 0, 0.8);
+		transition: all 0.3s;
+	}
+	&:hover::before {
+		width: 100%;
+	}
+	&:focus{
+		outline-color: var(--wp--preset--color--ul-primary);
+	}
+	&:active {
+		color: #fff;
+		&::before {
+			background-color: rgba(0, 0, 0, 0.2);
+			height: 100%;
+		}
+	}
+}

@@ -19,7 +19,6 @@ body.no-scroll {
 		width: 100%;
 		.navigation-wrapper {
 			animation: border-animation-reverse 2s forwards;
-			
 
 			ul {
 				transform: translateX(0%);
@@ -29,6 +28,7 @@ body.no-scroll {
 				opacity: 1;
 
 				transition: all 1.5s;
+
 			}
 		}
 	}
@@ -52,10 +52,10 @@ body.no-scroll {
 
 		@media (width <= 1023px) {
 			// animation: none;
-			
-				max-height: 100%;
-				height: 100%;
-			
+
+			max-height: 100%;
+			height: 100%;
+
 			.wp-block-navigation__container {
 				flex-direction: column;
 				gap: 20px;

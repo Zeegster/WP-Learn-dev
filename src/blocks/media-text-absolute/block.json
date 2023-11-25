@@ -11,7 +11,7 @@
 	"supports": {
 		"html": false,
 		"className": true,
-		"spacing": {"padding":true}
+		"spacing": { "padding": true }
 	},
 	"attributes": {
 		"zIndex": {

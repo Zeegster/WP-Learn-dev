@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
-	console.log("All blocks here");
-	console.log(wp.blocks.getBlockTypes());
-});
+window.addEventListener( 'DOMContentLoaded', () => {
+	console.log( 'All blocks here' );
+	console.log( wp.blocks.getBlockTypes() );
+} );
