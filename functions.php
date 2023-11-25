@@ -33,4 +33,5 @@ function ulitkaaroma_register_block_styles()
 	new_block_style('core/columns', 'column-reverse-mobile', 'Отразить на мобильных устройствах');
 	new_block_style('core/navigation-link', 'hide-on-mobile', 'Спрятать на мобильных устройствах');
 	new_block_style('core/site-logo', 'hide-on-mobile', 'Спрятать на мобильных устройствах');
+	new_block_style('core/cover', 'overflow-visible', 'Без ограничений контейнера');
 }

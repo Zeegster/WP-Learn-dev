@@ -246,7 +246,7 @@
 			"text": true
 		},
 		"layout": {
-			"contentSize": "97%",
+			"contentSize": "95%",
 			"wideSize": "100vw"
 		},
 		"shadow": {
@@ -637,6 +637,11 @@
 					}
 				}
 			},
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--inter)"
+				}
+			},
 			"link": {
 				"typography": {
 					"textDecoration": "none"
@@ -647,8 +652,8 @@
 			"blockGap": "0px",
 			"padding": {
 				"bottom": "0px",
-				"left": "0px",
-				"right": "0px",
+				"left": "2%",
+				"right": "2%",
 				"top": "0px"
 			}
 		},
@@ -671,5 +676,5 @@
 		}
 	],
 	"version": 2,
-	"$schema": "https://schemas.wp.org/wp/6.3/theme.json"
+	"$schema": "https://schemas.wp.org/wp/6.4/theme.json"
 }

@@ -130,3 +130,6 @@ Tags:
   
 }
 
+.is-style-overflow-visible{
+  overflow: visible !important;
+}
